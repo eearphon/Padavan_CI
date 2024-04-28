@@ -6,7 +6,7 @@ on:
       targets:
         description: 'targets to compile'
         required: true
-        default: "['SIM-AX1800T','HAR-20S2U1','CR660x','JCG-Q20']"
+        default: "['R2100','CR660x','XY-C1']"
       plugins:
         description: 'json format string of include configs'
         required: true
@@ -18,7 +18,7 @@ on:
       customization:
         description: 'json format string of customized configs'
         required: true
-        default: '{"rainbowui":"y","specializedlogo":"n","changebrandlogo":"n","lanip":"192.168.2.1","signaccount":"admin","signpassword":"admin","wifi2gssid":"","wifi5gssid":"","wifi2gpsk":"","wifi5gpsk":""}'
+        default: '{"rainbowui":"y","specializedlogo":"n","changebrandlogo":"n","lanip":"192.168.2.254","signaccount":"admin","signpassword":"admin","wifi2gssid":"","wifi5gssid":"","wifi2gpsk":"","wifi5gpsk":""}'
       firmwarever:
         description: 'firmware''s version'
         required: true
@@ -285,7 +285,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.STATUS == 'success'
       with:
-        name: Padavan44-packages
+        name: Padavan44-packages-${{ matrix.target }}
         path: ${{ env.FIRMWARE_PATH }}/*.trx
     - name: Remove obsolete firmwares on artifacts
       uses: Bonnie2980/gha-remove-artifacts@master
